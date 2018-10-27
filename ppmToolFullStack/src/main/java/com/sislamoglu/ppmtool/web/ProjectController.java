@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,5 +36,20 @@ public class ProjectController {
         return new ResponseEntity<Project>(project, HttpStatus.CREATED);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable("projectId")String projectId){
+        Project project = projectService.findProjectByIdentifier(projectId);
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
+    }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public ResponseEntity<Iterable<?>> getProjectById(){
+        return new ResponseEntity<Iterable<?>>(projectService.findAllProjects(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{projectId}")
+    public ResponseEntity<?> deleteProjectById(@PathVariable("projectId")String projectId){
+        projectService.deleteProjectByIdentifier(projectId);
+        return new ResponseEntity<String>("Project with Id '" + projectId + "' is deleted", HttpStatus.OK);
+    }
 }
