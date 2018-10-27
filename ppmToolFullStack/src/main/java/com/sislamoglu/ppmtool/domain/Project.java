@@ -25,7 +25,6 @@ public class Project {
     private Date startDate;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date endDate;
-
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date createdAt;
     @JsonFormat(pattern = "yyyy-mm-dd")
