@@ -1,5 +1,6 @@
 package com.sislamoglu.ppmtool;
 
+import com.sislamoglu.ppmtool.domain.Project;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
