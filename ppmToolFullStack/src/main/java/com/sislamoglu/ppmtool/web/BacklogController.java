@@ -1,6 +1,9 @@
 package com.sislamoglu.ppmtool.web;
 
+import com.sislamoglu.ppmtool.domain.Project;
 import com.sislamoglu.ppmtool.domain.ProjectTask;
+import com.sislamoglu.ppmtool.exceptions.ProjectNotFoundException;
+import com.sislamoglu.ppmtool.repositories.ProjectRepository;
 import com.sislamoglu.ppmtool.services.MapValidationErrorService;
 import com.sislamoglu.ppmtool.services.ProjectTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class BacklogController {
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     @RequestMapping(method = RequestMethod.POST, value = "/{backlogId}")
     public ResponseEntity<?> createNewProjectTask(@Valid @RequestBody ProjectTask projectTask,
                                                   BindingResult bindingResult, @PathVariable("backlogId") String backlogId){
@@ -39,5 +45,12 @@ public class BacklogController {
     @RequestMapping(method = RequestMethod.GET, value = "/{backlogId}")
     public ResponseEntity<Iterable<ProjectTask>> getProjectTasks(@PathVariable("backlogId") String backlogId){
         return new ResponseEntity<>(projectTaskService.findBacklogById(backlogId), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{backlogId}/{ptSeq}")
+    public ResponseEntity<?> getProjectTask(@PathVariable("backlogId") String backlogId,
+                                            @PathVariable("ptSeq") String projectTaskSequence){
+        ProjectTask projectTask = projectTaskService.findPTByProjectSequence(backlogId, projectTaskSequence);
+        return new ResponseEntity<ProjectTask>(projectTask, HttpStatus.OK);
     }
 }

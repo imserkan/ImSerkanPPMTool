@@ -1,10 +1,10 @@
 package com.sislamoglu.ppmtool.exceptions;
 
-public class ProjectIDExceptionResponce {
+public class ProjectIDExceptionResponse {
 
     private String projectIdentifier;
 
-    public ProjectIDExceptionResponce(String projectIdentifier){
+    public ProjectIDExceptionResponse(String projectIdentifier){
         this.projectIdentifier = projectIdentifier;
     }
 
