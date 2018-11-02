@@ -71,4 +71,41 @@ public class ProjectTaskService {
         }
         return projectTaskRepository.findByProjectSequence(sequence);
     }
+
+    public ProjectTask updateByProjectSequence(ProjectTask updatedTask, String backlogId, String sequence){
+        Backlog backlog = backlogRepository.findByProjectIdentifier(backlogId);
+        if(backlog == null){
+            throw new ProjectNotFoundException("Project with id: '" + backlogId + "' does not exists.");
+        }
+        ProjectTask projectTask = projectTaskRepository.findByProjectSequence(sequence);
+        if (projectTask == null){
+            throw new ProjectNotFoundException("Project Task '" + sequence + "' not found.");
+        }
+        if(!projectTask.getProjectIdentifier().equals(backlogId)){
+            throw new ProjectNotFoundException("Project Task '" + sequence +
+                    "' does not exists in the project: '" + backlogId + "'");
+        }
+        projectTask = updatedTask;
+        return projectTaskRepository.save(projectTask);
+    }
+
+    public void deleteByProjectSequence(String backlogId, String sequence){
+        Backlog backlog = backlogRepository.findByProjectIdentifier(backlogId);
+        if(backlog == null){
+            throw new ProjectNotFoundException("Project with id: '" + backlogId + "' does not exists.");
+        }
+        ProjectTask projectTask = projectTaskRepository.findByProjectSequence(sequence);
+        if (projectTask == null){
+            throw new ProjectNotFoundException("Project Task '" + sequence + "' not found.");
+        }
+        if(!projectTask.getProjectIdentifier().equals(backlogId)){
+            throw new ProjectNotFoundException("Project Task '" + sequence +
+                    "' does not exists in the project: '" + backlogId + "'");
+        }
+//        List<ProjectTask> projectTasks = backlog.getProjectTasks();
+//        projectTasks.remove(projectTask);
+//        backlog.setProjectTasks(projectTasks);
+//        backlogRepository.save(backlog);
+        projectTaskRepository.delete(projectTask);
+    }
 }
