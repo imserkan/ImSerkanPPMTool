@@ -7,7 +7,8 @@ import PropTypes from "prop-types";
 
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.getProjects();
+    const id = this.props.match.params.id;
+    this.props.getProjects(id);
   }
 
   render() {
