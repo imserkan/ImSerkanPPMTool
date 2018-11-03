@@ -102,10 +102,6 @@ public class ProjectTaskService {
             throw new ProjectNotFoundException("Project Task '" + sequence +
                     "' does not exists in the project: '" + backlogId + "'");
         }
-//        List<ProjectTask> projectTasks = backlog.getProjectTasks();
-//        projectTasks.remove(projectTask);
-//        backlog.setProjectTasks(projectTasks);
-//        backlogRepository.save(backlog);
         projectTaskRepository.delete(projectTask);
     }
 }
