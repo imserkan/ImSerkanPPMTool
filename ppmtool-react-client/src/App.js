@@ -3,7 +3,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AddProject from "./components/Project/AddProject";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -53,28 +53,30 @@ class App extends Component {
             {
               //Private Routes
             }
-            <SecuredRoute exact path="/dashboard" component={Dashboard} />
-            <SecuredRoute exact path="/addProject" component={AddProject} />
-            <SecuredRoute
-              exact
-              path="/updateProject/:id"
-              component={UpdateProject}
-            />
-            <SecuredRoute
-              exact
-              path="/projectBoard/:id"
-              component={ProjectBoard}
-            />
-            <SecuredRoute
-              exact
-              path="/addProjectTask/:id"
-              component={AddProjectTask}
-            />
-            <SecuredRoute
-              exact
-              path="/updateProjectTask/:id/:sequence"
-              component={UpdateProjectTask}
-            />
+            <Switch>
+              <SecuredRoute exact path="/dashboard" component={Dashboard} />
+              <SecuredRoute exact path="/addProject" component={AddProject} />
+              <SecuredRoute
+                exact
+                path="/updateProject/:id"
+                component={UpdateProject}
+              />
+              <SecuredRoute
+                exact
+                path="/projectBoard/:id"
+                component={ProjectBoard}
+              />
+              <SecuredRoute
+                exact
+                path="/addProjectTask/:id"
+                component={AddProjectTask}
+              />
+              <SecuredRoute
+                exact
+                path="/updateProjectTask/:id/:sequence"
+                component={UpdateProjectTask}
+              />
+            </Switch>
           </div>
         </Router>
       </Provider>
