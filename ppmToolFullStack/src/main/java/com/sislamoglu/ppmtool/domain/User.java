@@ -30,10 +30,19 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
+    private String department;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date hire_date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date birth_date;
+    private String gender;
+    private String address;
+    private String phoneNumber;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
+
 
     //OneToMany with project
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "user", orphanRemoval = true)
@@ -114,6 +123,54 @@ public class User implements UserDetails {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public Date getHire_date() {
+        return hire_date;
+    }
+
+    public void setHire_date(Date hire_date) {
+        this.hire_date = hire_date;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(Date birth_date) {
+        this.birth_date = birth_date;
     }
 
     @Override

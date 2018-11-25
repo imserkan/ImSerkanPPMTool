@@ -27,17 +27,27 @@ img {
 .fa.fa-minus-circle {
   color: red;
 }
-
+body {
+  background: url("https://wallpapertag.com/wallpaper/full/8/9/7/430830-relaxing-desktop-background-1920x1200-pictures.jpg")
+    no-repeat;
+}
 .landing {
   position: relative;
-  /* background: url("../img/showcase.jpg") no-repeat; */
+  background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VYJZA0Avg/master-engineer-is-working-for-the-machine-the-mechanism-of-the-system-silhouette-on-a-light-background-my-husbands-father-earns-for-the-family-hard-work_hnhqczgl__F0000.png")
+    no-repeat;
   background-size: cover;
   background-position: center;
+  color: #4286f4;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
-
+.singleProject {
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTddeOBeud92Yeoj2ke_OMOGunStQ0lUdujdksgcZq3suOqAJKz")
+    no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 .landing-inner {
   padding-top: 80px;
 }
@@ -62,4 +72,37 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.user-row {
+  margin-bottom: 14px;
+}
+
+.user-row:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-user {
+  margin: 13px 0;
+  padding: 5px;
+  height: 100%;
+}
+
+.dropdown-user:hover {
+  cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+.toppad {
+  margin-top: 20px;
 }

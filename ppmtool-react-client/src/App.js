@@ -14,6 +14,7 @@ import UpdateProjectTask from "./components/ProjectBoard/ProjectTasks/UpdateProj
 import Landing from "./components/Layout/Landing";
 import Register from "./components/UserComponent/Register";
 import Login from "./components/UserComponent/Login";
+import Profile from "./components/UserComponent/Profile";
 import jwt_decode from "jwt-decode";
 import setJWToken from "./securityUtils/setJWToken";
 import { SET_CURRENT_USER } from "./actions/types";
@@ -75,6 +76,11 @@ class App extends Component {
                 exact
                 path="/updateProjectTask/:id/:sequence"
                 component={UpdateProjectTask}
+              />
+              <SecuredRoute
+                exact
+                path="/profile/:username"
+                component={Profile}
               />
             </Switch>
           </div>

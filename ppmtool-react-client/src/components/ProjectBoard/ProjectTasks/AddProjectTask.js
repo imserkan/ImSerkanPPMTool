@@ -55,7 +55,7 @@ class AddProjectTask extends Component {
     const { id } = this.props.match.params.id;
     const { errors } = this.state;
     return (
-      <div className="add-PBI">
+      <div className="add-PBI text-white">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">

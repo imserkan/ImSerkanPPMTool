@@ -23,7 +23,7 @@ class Header extends Component {
 
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/dashboard" className="nav-link">
+            <Link to={`/profile/${user.username}`} className="nav-link">
               <i className="fas fa-user-circle mr-1" /> {user.fullname} <i />
             </Link>
           </li>
@@ -65,7 +65,7 @@ class Header extends Component {
     }
     return (
       <header>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
           <div className="container">
             <Link className="navbar-brand" to="/">
               Personal Project Management Tool

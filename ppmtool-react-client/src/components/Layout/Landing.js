@@ -12,7 +12,7 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing">
-        <div className="light-overlay landing-inner text-dark">
+        <div className="light-overlay landing-inner">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">

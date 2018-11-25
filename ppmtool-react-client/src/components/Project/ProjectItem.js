@@ -12,17 +12,17 @@ class ProjectItem extends Component {
   render() {
     const { project } = this.props;
     return (
-      <div className="container">
-        <div className="card card-body bg-light mb-3">
+      <div className="container singleProject">
+        <div className="card-body mb-3 text-white">
           <div className="row">
             <div className="col-2">
               <span className="mx-auto">{project.projectIdentifier}</span>
             </div>
-            <div className="col-lg-6 col-md-4 col-8">
+            <div className="col-lg-6 col-md-4 col-6 col-xs-4 d-lg-block">
               <h3>{project.projectName}</h3>
               <p>{project.description}</p>
             </div>
-            <div className="col-md-4 d-none d-lg-block">
+            <div className="col-md-4 col-xs-4 col-4">
               <ul className="list-group">
                 <Link to={`/projectBoard/${project.projectIdentifier}`}>
                   <li className="list-group-item board">

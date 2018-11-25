@@ -76,15 +76,6 @@ public class ProjectTaskService {
     }
 
     public void deleteByProjectSequence(String backlogId, String sequence, String username){
-//        projectService.findProjectByIdentifier(backlogId, username);
-////        ProjectTask projectTask = projectTaskRepository.findByProjectSequence(sequence);
-////        if (projectTask == null){
-////            throw new ProjectNotFoundException("Project Task '" + sequence + "' not found.");
-////        }
-////        if(!projectTask.getProjectIdentifier().equals(backlogId)){
-////            throw new ProjectNotFoundException("Project Task '" + sequence +
-////                    "' does not exists in the project: '" + backlogId + "'");
-////        }
         ProjectTask projectTask = findPTByProjectSequence(backlogId, sequence, username);
         projectTaskRepository.delete(projectTask);
     }

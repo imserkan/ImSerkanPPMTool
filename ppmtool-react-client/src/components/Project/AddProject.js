@@ -45,7 +45,7 @@ class AddProject extends Component {
 
     return (
       <div>
-        <div className="project">
+        <div className="project text-white">
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
@@ -102,7 +102,7 @@ class AddProject extends Component {
                       </div>
                     )}
                   </div>
-                  <h6>Start Date</h6>
+                  <h6 align="right">Start Date</h6>
                   <div className="form-group">
                     <input
                       type="date"
@@ -112,7 +112,7 @@ class AddProject extends Component {
                       onChange={this.onChange}
                     />
                   </div>
-                  <h6>Estimated End Date</h6>
+                  <h6 align="right">Estimated End Date</h6>
                   <div className="form-group">
                     <input
                       type="date"
