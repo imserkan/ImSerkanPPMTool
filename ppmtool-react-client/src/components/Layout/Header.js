@@ -11,6 +11,7 @@ class Header extends Component {
   }
   render() {
     const { validToken, user } = this.props.security;
+    console.log(user.username);
     const userAuthenticated = (
       <div className="collapse navbar-collapse" id="mobile-nav">
         <ul className="navbar-nav mr-auto">
@@ -23,9 +24,9 @@ class Header extends Component {
 
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to={`/profile/${user.username}`} className="nav-link">
+            <a href={`/profile/${user.username}`} className="nav-link">
               <i className="fas fa-user-circle mr-1" /> {user.fullname} <i />
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
             <Link
