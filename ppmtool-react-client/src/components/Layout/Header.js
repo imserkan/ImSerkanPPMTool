@@ -11,7 +11,6 @@ class Header extends Component {
   }
   render() {
     const { validToken, user } = this.props.security;
-    console.log(user.username);
     const userAuthenticated = (
       <div className="collapse navbar-collapse" id="mobile-nav">
         <ul className="navbar-nav mr-auto">

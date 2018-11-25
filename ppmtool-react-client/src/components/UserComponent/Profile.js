@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 class Profile extends Component {
   constructor() {
     super();
+    this.ready = false;
     this.state = {
       errors: {}
     };
@@ -19,114 +20,188 @@ class Profile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
+    this.ready = true;
   }
   render() {
-    const user = this.props.profileUser;
+    const user = this.props.user;
+    const profileUser = this.props.profileUser;
     const errors = this.props.errors;
-    const boardAlgorithm = errors => {
-      if (errors.userNotFound !== undefined) {
+    let editContent;
+    const editButton = (user, profileUser) => {
+      if (user.username === profileUser.username) {
         return (
-          <div className="alert alert-danger text-center" role="alert">
-            {errors.userNotFound}
+          <div className="btn btn-info col-md-2 offset-md-9">
+            <Link to={`./${user.username}/edit`} className="text-white">
+              Edit Profile Info
+            </Link>
           </div>
         );
-      } else {
-        return (
-          <div className="container bg-white">
-            <div className="row" align="center">
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-                <div className="panel panel-info">
-                  <div className="panel-heading">
-                    <h3 className="panel-title">{user.fullname}</h3>
-                  </div>
-                  <div className="panel-body">
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3">
-                          <img
-                            alt="User Pic"
-                            src="https://pbs.twimg.com/profile_images/912038361090715650/EXvapkJe_400x400.jpg"
-                            className="img-circle img-responsive"
-                          />
-                        </div>
+      }
+    };
+    editContent = editButton(user, profileUser);
+    const boardAlgorithm = errors => {
+      if (this.ready) {
+        if (errors.userNotFound !== undefined) {
+          return (
+            <div className="alert alert-danger text-center" role="alert">
+              {errors.userNotFound}
+            </div>
+          );
+        } else {
+          return (
+            <div className="container bg-white">
+              <div className="row" align="center">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                  <div className="panel panel-info">
+                    <div className="panel-heading ">
+                      <div className="row">
+                        <h3 className="panel-title col-md-4 offset-md-4">
+                          {profileUser.fullname}
+                        </h3>
                       </div>
                     </div>
-                    <div className="col-md-9 col-lg-9">
-                      <table className="table table-user-information">
-                        <tbody>
-                          <tr>
-                            <td>Deparment:</td>
-                            <td>{user.department}</td>
-                          </tr>
-                          <tr>
-                            <td>Hire Date:</td>
-                            <td>{user.hire_date}</td>
-                          </tr>
-                          <tr>
-                            <td>Date Of Birth:</td>
-                            <td>{user.birth_date}</td>
-                          </tr>
-                          <tr>
-                            <td>Gender:</td>
-                            <td>{user.gender}</td>
-                          </tr>
-                          <tr>
-                            <td>Home Address:</td>
-                            <td>{user.address}</td>
-                          </tr>
-                          <tr>
-                            <td>Email:</td>
-                            <td>{user.username}</td>
-                          </tr>
-                          <tr>
-                            <td>Phone Number:</td>
-                            <td>{user.phoneNumber}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div className="panel-body">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3">
+                            <img
+                              alt="User Pic"
+                              src="https://pbs.twimg.com/profile_images/912038361090715650/EXvapkJe_400x400.jpg"
+                              className="img-circle img-responsive"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {editContent}
+                      <div className="col-md-9 col-lg-9">
+                        <table className="table table-user-information">
+                          <tbody>
+                            <tr>
+                              <td>Deparment:</td>
+                              <td>{profileUser.department}</td>
+                            </tr>
+                            <tr>
+                              <td>Hire Date:</td>
+                              <td>{profileUser.hire_date}</td>
+                            </tr>
+                            <tr>
+                              <td>Date Of Birth:</td>
+                              <td>{profileUser.birth_date}</td>
+                            </tr>
+                            <tr>
+                              <td>Gender:</td>
+                              <td>{profileUser.gender}</td>
+                            </tr>
+                            <tr>
+                              <td>Home Address:</td>
+                              <td>{profileUser.address}</td>
+                            </tr>
+                            <tr>
+                              <td>Email:</td>
+                              <td>{profileUser.username}</td>
+                            </tr>
+                            <tr>
+                              <td>Phone Number:</td>
+                              <td>{profileUser.phoneNumber}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
-                  </div>
-                  <div className="panel-footer">
-                    <div className="col-md-12 col-lg-12">
-                      <a
-                        href="https://github.com/imserkan"
-                        data-original-title="Broadcast Message"
-                        data-toggle="tooltip"
-                        type="button"
-                        className="btn btn-sm btn-primary col-md-1 col-lg-1"
-                      >
-                        GitHub
-                        <i className="glyphicon glyphicon-envelope" />
-                      </a>
-                      <a
-                        href="https://twitter.com/IslamogluSerkan"
-                        data-original-title="Edit this user"
-                        data-toggle="tooltip"
-                        type="button"
-                        className="btn btn-sm btn-warning col-md-1 col-md-offset-10 "
-                      >
-                        Twitter
-                        <i className="glyphicon glyphicon-edit" />
-                      </a>
-                      <a
-                        href="https://linkedin.com/in/serkan-islamoglu-41a158169/"
-                        data-original-title="Remove this user"
-                        data-toggle="tooltip"
-                        type="button"
-                        className="btn btn-sm btn-danger"
-                      >
-                        Linked-In
-                        <i className="glyphicon glyphicon-remove col-md-1" />
-                      </a>
+                    <div className="panel-footer">
+                      <div className="col-md-12 col-lg-12">
+                        <a
+                          href="https://github.com/imserkan"
+                          data-original-title="Broadcast Message"
+                          data-toggle="tooltip"
+                          type="button"
+                          className="btn btn-sm btn-primary col-md-1 col-lg-1"
+                        >
+                          GitHub
+                          <i className="glyphicon glyphicon-envelope" />
+                        </a>
+                        <a
+                          href="https://twitter.com/IslamogluSerkan"
+                          data-original-title="Edit this user"
+                          data-toggle="tooltip"
+                          type="button"
+                          className="btn btn-sm btn-warning col-md-1 col-md-offset-10 "
+                        >
+                          Twitter
+                          <i className="glyphicon glyphicon-edit" />
+                        </a>
+                        <a
+                          href="https://linkedin.com/in/serkan-islamoglu-41a158169/"
+                          data-original-title="Remove this user"
+                          data-toggle="tooltip"
+                          type="button"
+                          className="btn btn-sm btn-danger"
+                        >
+                          Linked-In
+                          <i className="glyphicon glyphicon-remove col-md-1" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          );
+        }
+      } else {
+        return (
+          <div className="loader loader--style4 col-md-12" title="3">
+            <svg
+              version="1.1"
+              id="Layer_1"
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="24px"
+              height="24px"
+              viewBox="0 0 24 24"
+            >
+              <rect x="0" y="0" width="4" height="7" fill="#333">
+                <animateTransform
+                  attributeType="xml"
+                  attributeName="transform"
+                  type="scale"
+                  values="1,1; 1,3; 1,1"
+                  begin="0s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                />
+              </rect>
+
+              <rect x="10" y="0" width="4" height="7" fill="#333">
+                <animateTransform
+                  attributeType="xml"
+                  attributeName="transform"
+                  type="scale"
+                  values="1,1; 1,3; 1,1"
+                  begin="0.2s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                />
+              </rect>
+              <rect x="20" y="0" width="4" height="7" fill="#333">
+                <animateTransform
+                  attributeType="xml"
+                  attributeName="transform"
+                  type="scale"
+                  values="1,1; 1,3; 1,1"
+                  begin="0.4s"
+                  dur="0.6s"
+                  repeatCount="indefinite"
+                />
+              </rect>
+            </svg>
           </div>
         );
       }
     };
+
     let boardContent;
     boardContent = boardAlgorithm(errors);
     return <div className="container">{boardContent}</div>;
@@ -135,12 +210,14 @@ class Profile extends Component {
 
 Profile.propTypes = {
   profileUser: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profileUser: state.profile.profileUser,
+  user: state.security.user,
   errors: state.errors
 });
 
