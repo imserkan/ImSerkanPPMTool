@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Loading extends Component {
   render() {
     return (
-      <div class="loader loader--style4" title="3">
+      <div className="loader loader--style4 col-md-12" title="3">
         <svg
           version="1.1"
           id="Layer_1"
@@ -13,7 +13,6 @@ class Loading extends Component {
           width="24px"
           height="24px"
           viewBox="0 0 24 24"
-          style="enable-background:new 0 0 50 50;"
         >
           <rect x="0" y="0" width="4" height="7" fill="#333">
             <animateTransform

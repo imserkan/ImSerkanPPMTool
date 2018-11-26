@@ -1,7 +1,10 @@
 img {
   width: 100%;
 }
-
+.lead2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 .navbar {
   background-color: #e3f2fd;
 }

@@ -4,6 +4,7 @@ import Backlog from "./Backlog";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getBacklog } from "../../actions/backlogActions";
+import Loading from "../Layout/Loading";
 
 class ProjectBoard extends Component {
   constructor() {
@@ -58,55 +59,7 @@ class ProjectBoard extends Component {
           return <Backlog project_tasks={project_tasks} />;
         }
       } else {
-        return (
-          <div className="loader loader--style4 col-md-12" title="3">
-            <svg
-              version="1.1"
-              id="Layer_1"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-            >
-              <rect x="0" y="0" width="4" height="7" fill="#333">
-                <animateTransform
-                  attributeType="xml"
-                  attributeName="transform"
-                  type="scale"
-                  values="1,1; 1,3; 1,1"
-                  begin="0s"
-                  dur="0.6s"
-                  repeatCount="indefinite"
-                />
-              </rect>
-
-              <rect x="10" y="0" width="4" height="7" fill="#333">
-                <animateTransform
-                  attributeType="xml"
-                  attributeName="transform"
-                  type="scale"
-                  values="1,1; 1,3; 1,1"
-                  begin="0.2s"
-                  dur="0.6s"
-                  repeatCount="indefinite"
-                />
-              </rect>
-              <rect x="20" y="0" width="4" height="7" fill="#333">
-                <animateTransform
-                  attributeType="xml"
-                  attributeName="transform"
-                  type="scale"
-                  values="1,1; 1,3; 1,1"
-                  begin="0.4s"
-                  dur="0.6s"
-                  repeatCount="indefinite"
-                />
-              </rect>
-            </svg>
-          </div>
-        );
+        return <Loading />;
       }
     };
 
