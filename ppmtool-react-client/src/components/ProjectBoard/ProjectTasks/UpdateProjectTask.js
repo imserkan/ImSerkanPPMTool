@@ -72,7 +72,6 @@ class UpdateProjectTask extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     const updatedProjectTask = {
       id: this.state.id,
       projectSequence: this.state.projectSequence,

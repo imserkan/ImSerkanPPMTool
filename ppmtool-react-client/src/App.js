@@ -20,6 +20,7 @@ import setJWToken from "./securityUtils/setJWToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoutes";
+import UpdateUserProfile from "./components/UserComponent/UserProfile/UpdateUserProfile";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -81,6 +82,11 @@ class App extends Component {
                 exact
                 path="/profile/:username"
                 component={Profile}
+              />
+              <SecuredRoute
+                exact
+                path="/profile/:username/edit"
+                component={UpdateUserProfile}
               />
             </Switch>
           </div>

@@ -19,6 +19,22 @@ export const createNewUser = (newUser, history) => async dispatch => {
   }
 };
 
+export const updateUser = (newUser, username, history) => async dispatch => {
+  try {
+    await axios.post(`/api/users/profile/${username}/edit`, newUser);
+    history.push(`/profile/${username}`);
+    dispatch({
+      type: GET_ERRORS,
+      payload: {}
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: error.response.data
+    });
+  }
+};
+
 export const login = loginRequest => async dispatch => {
   try {
     const res = await axios.post("/api/users/login", loginRequest);
