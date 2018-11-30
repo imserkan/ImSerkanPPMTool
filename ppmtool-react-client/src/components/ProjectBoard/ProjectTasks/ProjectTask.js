@@ -45,7 +45,7 @@ class ProjectTask extends Component {
           </Link>
 
           <button
-            className="btn btn-danger ml-4"
+            className="btn btn-danger ml-1"
             onClick={this.onDeleteClick.bind(
               this,
               project_task.projectIdentifier,

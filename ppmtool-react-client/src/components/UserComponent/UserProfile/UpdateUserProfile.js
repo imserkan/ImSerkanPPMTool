@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getUser, updateUser } from "../../../actions/securityActions";
+import { fileUpload } from "../../../actions/uploadActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loading from "../../Layout/Loading";
@@ -12,6 +13,7 @@ class UpdateUserProfile extends Component {
       id: "",
       username: "",
       fullname: "",
+      selectedFile: null,
       password: "",
       department: "",
       hire_date: "",
@@ -78,10 +80,15 @@ class UpdateUserProfile extends Component {
     };
     this.props.updateUser(updateProfile, username, this.props.history);
   }
-
+  fileSelectedHandler = event => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+  fileUploadHandler = event => {
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile, this.state.selectedFile.name);
+    this.props.fileUpload(fd);
+  };
   render() {
-    console.log(this.props.profileUser);
-    console.log(this.props.user);
     const BoardAlgorithm = () => {
       if (this.ready) {
         return (
@@ -221,6 +228,7 @@ UpdateUserProfile.propTypes = {
   updateUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired,
+  fileUpload: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -230,5 +238,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getUser, updateUser }
+  { getUser, updateUser, fileUpload }
 )(UpdateUserProfile);

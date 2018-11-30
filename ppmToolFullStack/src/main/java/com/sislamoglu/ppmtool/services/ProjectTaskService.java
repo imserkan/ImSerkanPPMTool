@@ -11,6 +11,9 @@ import com.sislamoglu.ppmtool.repositories.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -52,7 +55,11 @@ public class ProjectTaskService {
 
     public Iterable<ProjectTask> findBacklogById(String projectIdentifier, String username){
         projectService.findProjectByIdentifier(projectIdentifier, username);
-        return projectTaskRepository.findByProjectIdentifierOrderByPriority(projectIdentifier);
+        Iterable<ProjectTask> projectTasks = projectTaskRepository.findByProjectIdentifierOrderByPriority(projectIdentifier);
+        for(ProjectTask projectTask: projectTasks){
+           isIncomplete(projectTask);
+        }
+        return projectTasks;
     }
 
     public ProjectTask findPTByProjectSequence(String backlogId, String sequence, String username){
@@ -78,5 +85,15 @@ public class ProjectTaskService {
     public void deleteByProjectSequence(String backlogId, String sequence, String username){
         ProjectTask projectTask = findPTByProjectSequence(backlogId, sequence, username);
         projectTaskRepository.delete(projectTask);
+    }
+
+    public void isIncomplete(ProjectTask projectTask){
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = new Date();
+        if (!projectTask.getStatus().equals("DONE")){
+            if (projectTask.getDueDate().compareTo(new Date()) < 0){
+                projectTask.setStatus("INCOMPLETE");
+            }
+        }
     }
 }

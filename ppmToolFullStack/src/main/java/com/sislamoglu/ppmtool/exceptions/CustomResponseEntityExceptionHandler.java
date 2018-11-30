@@ -36,4 +36,10 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         UserNotFoundExceptionResponse exceptionResponse = new UserNotFoundExceptionResponse(ex.getMessage());
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleStorageException(StorageException ex, WebRequest request){
+        StorageExceptionResponse exceptionResponse = new StorageExceptionResponse(ex.getMessage());
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }

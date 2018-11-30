@@ -22,11 +22,33 @@ class Profile extends Component {
     }
     this.ready = true;
   }
+
   render() {
     const user = this.props.user;
     const profileUser = this.props.profileUser;
     const errors = this.props.errors;
     let editContent;
+    let genderContent;
+    const genderProfileImage = gender => {
+      console.log(gender);
+      if (gender === "Female") {
+        return (
+          <img
+            alt="User Pic"
+            src="https://img.icons8.com/ios/1600/user-female-circle-filled.png"
+            className="img-circle img-responsive"
+          />
+        );
+      } else {
+        return (
+          <img
+            alt="User Pic"
+            src="https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-fill-circle-512.png"
+            className="img-circle img-responsive"
+          />
+        );
+      }
+    };
     const editButton = (user, profileUser) => {
       if (user.username === profileUser.username) {
         return (
@@ -39,6 +61,7 @@ class Profile extends Component {
       }
     };
     editContent = editButton(user, profileUser);
+    genderContent = genderProfileImage(profileUser.gender);
     const boardAlgorithm = errors => {
       if (this.ready) {
         if (errors.userNotFound !== undefined) {
@@ -64,11 +87,7 @@ class Profile extends Component {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="col-md-3 col-lg-3 col-md-offset-3 col-lg-offset-3">
-                            <img
-                              alt="User Pic"
-                              src="https://pbs.twimg.com/profile_images/912038361090715650/EXvapkJe_400x400.jpg"
-                              className="img-circle img-responsive"
-                            />
+                            {genderContent}
                           </div>
                         </div>
                       </div>
@@ -136,10 +155,10 @@ class Profile extends Component {
                           data-original-title="Remove this user"
                           data-toggle="tooltip"
                           type="button"
-                          className="btn btn-sm btn-danger"
+                          className="btn btn-sm btn-danger col-md-1 col-md-offset-11"
                         >
                           Linked-In
-                          <i className="glyphicon glyphicon-remove col-md-1" />
+                          <i className="glyphicon glyphicon-remove" />
                         </a>
                       </div>
                     </div>
