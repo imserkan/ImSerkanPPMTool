@@ -24,7 +24,6 @@ class Dashboard extends Component {
     }
     this.ready = true;
   }
-
   render() {
     const projects = this.props.project.projects;
     let boardContent;

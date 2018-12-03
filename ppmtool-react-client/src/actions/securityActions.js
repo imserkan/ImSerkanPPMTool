@@ -21,7 +21,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
 
 export const updateUser = (newUser, username, history) => async dispatch => {
   try {
-    await axios.post(`/api/users/profile/${username}/edit`, newUser);
+    await axios.post(`/api/profile/${username}/edit`, newUser);
     history.push(`/profile/${username}`);
     dispatch({
       type: GET_ERRORS,
@@ -65,7 +65,7 @@ export const logout = () => async dispatch => {
 
 export const getUser = username => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/profile/${username}`);
+    const res = await axios.get(`/api/profile/${username}`);
     dispatch({
       type: GET_USER,
       payload: res.data
