@@ -11,8 +11,9 @@ class Header extends Component {
   }
   render() {
     const { validToken, user } = this.props.security;
+
     const userAuthenticated = (
-      <div className="collapse navbar-collapse responsive" id="mobile-nav">
+      <div className="collapse navbar-collapse" id="mobile-nav">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/dashboard">
@@ -22,7 +23,7 @@ class Header extends Component {
         </ul>
 
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
+          <li className="nav-item active">
             <Link to={`/profile/${user.username}`} className="nav-link">
               <i className="fas fa-user-circle mr-1" /> {user.username} <i />
             </Link>
@@ -64,25 +65,22 @@ class Header extends Component {
       headerLinks = userNotAuthenticated;
     }
     return (
-      <header>
-        <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-          <div className="container">
-            <Link className="navbar-brand" to="/">
-              Personal Project Management Tool
-            </Link>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="mobile-nav"
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
-
-            {headerLinks}
-          </div>
-        </nav>
-      </header>
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            Personal Project Management Tool
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#mobile-nav"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          {headerLinks}
+        </div>
+      </nav>
     );
   }
 }
